@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Danielr\Demo\API\Internal;
 
 use Danielr\Demo\API\Contracts\HttpClientInterface;
+use Danielr\Demo\API\Contracts\PokeAPIInterface;
+use Danielr\Demo\API\Contracts\PokemonServiceInterface;
 use Danielr\Demo\API\Http\HttpClient;
 use Danielr\Demo\API\External\PokeApi\PokeAPI;
 use Danielr\Demo\API\Services\PokemonService;
@@ -27,9 +29,9 @@ class Container
     {
         return match ($class) {
             HttpClientInterface::class => new HttpClient(),
-            PokeAPI::class => new PokeAPI($this->get(HttpClientInterface::class)),
-            PokemonService::class => new PokemonService($this->get(PokeAPI::class)),
-            PokemonController::class => new PokemonController($this->get(PokemonService::class)),
+            PokeAPIInterface::class => new PokeAPI($this->get(HttpClientInterface::class)),
+            PokemonServiceInterface::class => new PokemonService($this->get(PokeAPIInterface::class)),
+            PokemonController::class => new PokemonController($this->get(PokemonServiceInterface::class)),
             default => throw new \InvalidArgumentException("Cannot resolve class: {$class}")
         };
     }

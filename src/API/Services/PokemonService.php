@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Danielr\Demo\API\Services;
 
-use Danielr\Demo\API\External\PokeApi\PokeAPI;
+use Danielr\Demo\API\Contracts\PokeAPIInterface;
+use Danielr\Demo\API\Contracts\PokemonServiceInterface;
 use Danielr\Demo\API\Exceptions\ValidationException;
 
-class PokemonService
+class PokemonService implements PokemonServiceInterface
 {
-    public function __construct(private PokeAPI $pokeApi) {}
+    public function __construct(private PokeAPIInterface $pokeApi) {}
 
     public function getPokemon(string $name): array
     {

@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Danielr\Demo\API\External\PokeApi;
 
 use Danielr\Demo\API\Contracts\HttpClientInterface;
+use Danielr\Demo\API\Contracts\PokeAPIInterface;
 use Danielr\Demo\API\Exceptions\ApiException;
 
-class PokeAPI
+class PokeAPI implements PokeAPIInterface
 {
     public const BASE_URI = 'https://pokeapi.co/api/v2/';
 
