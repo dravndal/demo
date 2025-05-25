@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Danielr\Demo\API\Internal;
+
+use Danielr\Demo\API\Contracts\HttpClientInterface;
+use Danielr\Demo\API\Http\HttpClient;
+use Danielr\Demo\API\External\PokeApi\PokeAPI;
+use Danielr\Demo\API\Services\PokemonService;
+use Danielr\Demo\API\Controllers\PokemonController;
+
+class Container
+{
+    private array $instances = [];
+
+    public function get(string $class): object
+    {
+        if (isset($this->instances[$class])) {
+            return $this->instances[$class];
+        }
+
+        return $this->instances[$class] = $this->create($class);
+    }
+
+    private function create(string $class): object
+    {
+        return match ($class) {
+            HttpClientInterface::class => new HttpClient(),
+            PokeAPI::class => new PokeAPI($this->get(HttpClientInterface::class)),
+            PokemonService::class => new PokemonService($this->get(PokeAPI::class)),
+            PokemonController::class => new PokemonController($this->get(PokemonService::class)),
+            default => throw new \InvalidArgumentException("Cannot resolve class: {$class}")
+        };
+    }
+}

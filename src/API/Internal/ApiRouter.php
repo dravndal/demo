@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Danielr\Demo\Src\API\Internal;
+namespace Danielr\Demo\API\Internal;
 
 class ApiRouter
 {
     public static function handleRequest(): void
     {
-        $method = $_SERVER['REQUEST_METHOD'] ?? '';
-
+        $container = new Container();
+        $router = new Router($container);
+        
         try {
-            match ($method) {
-                'POST' => '',
-                'GET' => '',
-                default => Response::notAllowed('Method not allowed')
-            };
+            $router->handleRequest();
         } catch (\Exception $e) {
             Response::error($e->getMessage());
         }
     }
-
 }
