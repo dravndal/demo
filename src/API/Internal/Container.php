@@ -27,6 +27,9 @@ class Container
 
     private function create(string $class): object
     {
+        // Manual dependency injection 
+        // each interface maps to its concrete implementation
+        // Dependencies are automatically resolved through recursive $this->get() calls
         return match ($class) {
             HttpClientInterface::class => new HttpClient(),
             PokeAPIInterface::class => new PokeAPI($this->get(HttpClientInterface::class)),

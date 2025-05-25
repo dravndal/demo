@@ -32,10 +32,12 @@ class Router
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
         $path = parse_url($requestUri, PHP_URL_PATH);
         
+        // Strip /api.php prefix if present in the URL path
         if (str_contains($path, '/api.php')) {
             $path = str_replace('/api.php', '', $path);
         }
         
+        // Default to /pokemon route when no specific path is provided
         if (empty($path) || $path === '/') {
             $path = '/pokemon';
         }
