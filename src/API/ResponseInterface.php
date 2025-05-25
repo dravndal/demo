@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Danielr\Demo\API;
@@ -12,3 +13,4 @@ interface ResponseInterface
     public function toArray(): array;
     public function toJson(): string;
 }
+
