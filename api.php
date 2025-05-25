@@ -2,12 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Danielr\Demo;
+require_once 'vendor/autoload.php';
 
-use Danielr\Demo\Src\API\Internal\ApiRouter;
+use Danielr\Demo\API\Internal\ApiRouter;
 
-try {
-    ApiRouter::handleRequest();
-} catch (\Exception $e) {
-    Response::error('message');
-}
+ApiRouter::handleRequest();

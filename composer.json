@@ -4,14 +4,16 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Danielr\\Demo\\": "/"
+            "Danielr\\Demo\\": "src/"
         }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "*"
     },
     "authors": [
         {
             "name": "dravndal",
             "email": "danielcravndal@gmail.com"
         }
-    ],
-    "require": {}
+    ]
 }
