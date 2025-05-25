@@ -1,5 +1,24 @@
 # Pokemon API - KDA Demonstration
 
+## Installation & Setup
+
+### Prerequisites
+- PHP 8.0 or higher
+- Composer
+
+### Quick Start
+```bash
+git clone https://github.com/dravndal/demo.git
+cd demo
+composer install
+php -S localhost:3000
+```
+
+### Usage
+After starting the server, the API will be available at:
+- Get Pokemon: `http://localhost:3000/api.php?name=pikachu`
+or you can go to http://localhost:3000 and use the html5 form
+
 ### 1. Abstract Classes and interfaces
 
 **Concept**: Providing a common interface while enforcing implementation of specific methods in child classes.
